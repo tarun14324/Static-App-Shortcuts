@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Static App Shortcuts</string>
+    <string name="go_to_sports">Go to Sports Screen</string>
+    <string name="go_to_events">Go to Events Screen</string>
 </resources>

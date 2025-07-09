@@ -7,22 +7,31 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.staticappshortcuts.ui.screen.EventsScreen
+import com.example.staticappshortcuts.ui.screen.HomeScreen
+import com.example.staticappshortcuts.ui.screen.SportsScreen
 import com.example.staticappshortcuts.ui.theme.StaticAppShortcutsTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val startDestination = when (intent?.data?.toString()) {
+            "app://sports" -> "sports"
+            "app://events" -> "events"
+            else -> "home"
+        }
         setContent {
             StaticAppShortcutsTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                    StaticAppShortcutsScreen(
+                        modifier = Modifier.padding(innerPadding),
+                        startDestination = startDestination
                     )
                 }
             }
@@ -31,17 +40,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    StaticAppShortcutsTheme {
-        Greeting("Android")
+fun StaticAppShortcutsScreen(modifier: Modifier = Modifier, startDestination: String) {
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = startDestination) {
+        composable("home") { HomeScreen(navController) }
+        composable("sports") { SportsScreen() }
+        composable("events") { EventsScreen() }
     }
 }

@@ -1,0 +1,27 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="Sports"
+        android:enabled="true"
+        android:icon="@drawable/ic_sports"
+        android:shortcutShortLabel="@string/go_to_sports"
+        android:shortcutLongLabel="@string/go_to_sports">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.staticappshortcuts"
+            android:targetClass="com.example.staticappshortcuts.MainActivity"
+            android:data="app://sports" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="Events"
+        android:enabled="true"
+        android:icon="@drawable/ic_events"
+        android:shortcutShortLabel="@string/go_to_events"
+        android:shortcutLongLabel="@string/go_to_events">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.staticappshortcuts"
+            android:targetClass="com.example.staticappshortcuts.MainActivity"
+            android:data="app://events" />
+    </shortcut>
+</shortcuts>
